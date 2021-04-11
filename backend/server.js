@@ -17,16 +17,18 @@ app.use('/api/customers', customerRoute)
 app.use('/api/transactions', transactionRoute)
 
 //-------------ERROR HANDLING--------------//
+
 app.use((err, req, res, next) => {
     console.log(err.message);
     HttpError.handleError(err, res);
 })
 
 //------------INIT & CATCHALLS-------------//
+
 if (env === 'production') {
-    app.use(express.static(path.join(__dirname,"client/build")))
+    app.use(express.static(path.join(__dirname,"/../client/build")))
     app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname,"client","build","index.html"))
+        res.sendFile(path.join(`${__dirname}/../client/build/index.html`))
     })
 }
 
