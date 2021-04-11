@@ -14,12 +14,12 @@ function TransactionModal() {
 
     useEffect(() => {
         if(customer) {
-            fetchData(`/transactions?customer=${customer.id}`, (data) => {
+            fetchData(`/api/transactions?customer=${customer.id}`, (data) => {
                 setTransactions(data)
             })
         }
         return () => setTransactions(null)
-    }, [customer])
+    }, [customer, fetchData])
 
     return (
         <Modal
@@ -29,6 +29,7 @@ function TransactionModal() {
             title={customer && `${customer.firstName} ${customer.lastName}'s Transactions & Points`}
         >
             {loading && <Spinner />}
+            {error && <div className="mx-auto p-3 text-center">Uh oh, an error has occured: {error}</div>}
             {transactions && <TransactionTabs data={transactions} />}
         </Modal>
     )

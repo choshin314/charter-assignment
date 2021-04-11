@@ -4,6 +4,7 @@ import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import TransactionsEach from './TransactionsEach'
 import TransactionsMonthly from './TransactionsMonthly'
+import './TransactionTabs.css'
 
 function TransactionTabs({data}) {
     const [ activeTab, setActiveTab ] = useState('monthly')

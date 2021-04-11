@@ -3,8 +3,8 @@ import './DataTable.css'
 
 function DataTable({ headings, onClick, children }) {
     return (
-        <Table className="d-table" onClick={onClick}>
-            <thead className="d-table__head text-center">
+        <Table className="d-table text-center" onClick={onClick}>
+            <thead className="d-table__head">
                 <tr>
                     {headings.map(h => (
                         <th key={h}>

@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import NavBar from "./components/nav/NavBar";
-import CustomerTable from "./components/CustomerTable";
+import CustomerTable from "./components/customers/CustomerTable";
 import TransactionModal from "./components/transactions/TransactionModal";
 import { ModalContextProvider } from "./context/ModalContext";
 
@@ -13,12 +13,14 @@ function App() {
         <ModalContextProvider>
             <NavBar />
             <Container className="py-3">
-                <Route exact path="/">
-                    <CustomerTable />
-                </Route>
-                <Route path="/search">
-                    <CustomerTable />
-                </Route>
+                <Switch>
+                    <Route exact path="/">
+                        <CustomerTable />
+                    </Route>
+                    <Route path="/search">
+                        <CustomerTable />
+                    </Route>
+                </Switch>
             </Container>
             <TransactionModal />
         </ModalContextProvider>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 import { ajaxGet } from "../util";
 
@@ -6,7 +6,7 @@ export default function useFetch() {
     const [ loading, setLoading ] = useState(false)
     const [ error, setError ] = useState(null)
 
-    const fetchData = async (url, onSuccess) => {
+    const fetchData = useCallback(async (url, onSuccess) => {
         setLoading(true)
         ajaxGet(url)
             .then(res => {
@@ -17,7 +17,7 @@ export default function useFetch() {
                 }
                 setLoading(false)
             })
-    }
+    }, [setLoading, setError])
 
     return { loading, error, fetchData }
 }

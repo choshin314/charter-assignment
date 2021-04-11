@@ -8,7 +8,7 @@ function DataRow({ id, idx=0, cells, onClick }) {
             onClick={onClick}
             className={`table-row ${rowClass}`}
         >
-            {cells.map(c => <td className="text-center" key={c}>{c}</td>)}
+            {cells.map(c => <td key={c}>{c}</td>)}
         </tr>
     )
 }
