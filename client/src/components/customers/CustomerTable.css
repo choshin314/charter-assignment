@@ -6,4 +6,11 @@
 .customer-table__title {
     color: var(--spec-primary);
     text-align: center;
+    font-size: 1.5rem;
+}
+
+@media(min-width: 600px) {
+    .customer-table__title {
+        font-size: 2rem;
+    }
 }

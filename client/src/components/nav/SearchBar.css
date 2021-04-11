@@ -1,0 +1,30 @@
+.search {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.search__input {
+    font-size: .8rem;
+}
+
+.search__btn {
+    font-size: .8rem;
+    padding: 6px;
+    display: none;
+}
+
+@media(min-width: 300px) {
+    .search__btn {
+        display: inline-block;
+    }
+}
+@media(min-width: 600px) {
+    .search__input {
+        font-size: 1rem;
+    }
+    
+    .search__btn {
+        font-size: 1rem;
+        padding: 6px 12px;
+    }
+}

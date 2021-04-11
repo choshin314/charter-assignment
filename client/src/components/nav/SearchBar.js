@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import { convertToQueryString } from '../../util'
+import './SearchBar.css'
 
 function SearchBar() {
     const [ query, setQuery ] = useState('')
@@ -18,14 +19,21 @@ function SearchBar() {
     }
 
     return (
-        <Form inline onSubmit={handleSubmit}>
+        <Form inline className="search" onSubmit={handleSubmit}>
             <FormControl 
                 value={query}
                 type="text" 
                 placeholder="Search Customers" 
                 onChange={handleChange} 
+                className="search__input"
             />
-            <Button type="submit" variant="light" className="ml-1">Search</Button>
+            <Button 
+                type="submit" 
+                variant="light" 
+                className="search__btn ml-1"
+            >
+                Search
+            </Button>
         </Form>
     )
 }

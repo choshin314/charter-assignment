@@ -10,12 +10,12 @@ function NavBar() {
     return (
         <Navbar variant="dark">
             <Container>
-                <Navbar.Brand>
-                    <Link to="/">
+                <Navbar.Brand className="logo">
+                    <Link className="logo__link" to="/">
                         <img 
                             src={logo} 
                             height="30" 
-                            className="d-inline-block align-top"
+                            className="logo__img d-inline-block align-top"
                             alt="Spectrum Logo"
                         />
                     </Link>
