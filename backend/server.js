@@ -3,7 +3,7 @@ const path = require('path')
 const express = require('express')
 const app = express()
 
-const env = process.env.NODE_ENV
+const env = process.env.NODE_ENV || "development"
 const HttpError = require('./errors')
 const { customerRoute, transactionRoute } = require('./routes')
 
