@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/NavBar'
 import SearchBar from './SearchBar'
@@ -10,12 +11,14 @@ function NavBar() {
         <Navbar variant="dark">
             <Container>
                 <Navbar.Brand>
-                    <img 
-                        src={logo} 
-                        height="30" 
-                        className="d-inline-block align-top"
-                        alt="Spectrum Logo"
-                    />
+                    <Link to="/">
+                        <img 
+                            src={logo} 
+                            height="30" 
+                            className="d-inline-block align-top"
+                            alt="Spectrum Logo"
+                        />
+                    </Link>
                 </Navbar.Brand>
                 <SearchBar />
             </Container>

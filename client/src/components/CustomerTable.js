@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 
 import DataTable from './table/DataTable'
 import DataRow from './table/DataRow'
@@ -9,6 +10,8 @@ import useFetch from '../hooks/useFetch';
 
 function CustomerTable() {
     const [ customers, setCustomers ] = useState([]);
+    let { search } = useLocation();
+    search = search.split('=')[1];
     const { toggleModal, setSelectedCustomer } = useModalContext();
     const { loading, error, fetchData } = useFetch()
 
@@ -23,12 +26,16 @@ function CustomerTable() {
     }
 
     useEffect(() => {
-        fetchData('/customers', data => setCustomers(data))
-    }, [])
+        console.log(search)
+        const url = search ? `/customers?name=${search}` : '/customers'
+        fetchData(url, data => setCustomers(data))
+    }, [search])
 
     return (
         <div className="customer-table">
-            <h1 className="customer-table__title mb-3">Customer List</h1>
+            <h1 className="customer-table__title mb-3">
+                {search ? `Search Results for "${search.replaceAll('+', ' ')}"` : 'Customer List'}
+            </h1>
             <DataTable
                 headings={['ID','Name','Phone']}
                 onClick={handleClick}

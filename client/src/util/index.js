@@ -6,3 +6,7 @@ export async function ajaxGet(url) {
         return { error: err.message }
     }
 }
+
+export function convertToQueryString(str) {
+    return str.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +|_/g,'+');
+}
