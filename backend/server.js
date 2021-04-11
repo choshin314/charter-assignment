@@ -1,4 +1,5 @@
 require('dotenv').config()
+const env = process.env.NODE_ENV
 const path = require('path')
 const fs = require('fs')
 const express = require('express')
@@ -9,16 +10,24 @@ const { getPoints } = require('./util')
 
 //middlewares
 app.use(express.json())
-app.use(express.static(path.join(__dirname,"client","build")))
 
-//get all customers
+
+//get customer list
 app.get('/customers', (req, res, next) => {
-    const { name } = req.query;
+    const { name, offset } = req.query;
+    let results = [];
+    let limit = 20;
     if (name) {
         const reg = new RegExp(name, 'i')
-        let results = customerData.filter(c => reg.test(`${c.firstName} ${c.lastName}`))
-        res.json({ data: results })
-    } else res.json({ data: customerData })
+        results = customerData.filter(c => reg.test(`${c.firstName} ${c.lastName}`))
+    } else {
+        results = customerData
+    }
+    results = offset ? 
+        results.slice(offset, offset+limit) :
+        results.slice(0,limit)
+
+    res.json({ data: results })
 })
 
 //get customer by id
@@ -57,9 +66,14 @@ app.get('/transactions', (req, res, next) => {
 })
 
 //init server
-// app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname,"client","build","index.html"))
-// })
+
+if (env === 'production') {
+    app.use(express.static(path.join(__dirname,"client/build")))
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname,"client","build","index.html"))
+    })
+}
+
 app.listen(process.env.PORT || 5000, () => {
     console.log(`Listening on port ${process.env.PORT || 5000}`)
 })
