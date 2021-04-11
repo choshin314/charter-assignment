@@ -13,7 +13,12 @@ app.use(express.static(path.join(__dirname,"client","build")))
 
 //get all customers
 app.get('/customers', (req, res, next) => {
-    res.json({ data: customerData })
+    const { name } = req.query;
+    if (name) {
+        const reg = new RegExp(name, 'i')
+        let results = customerData.filter(c => reg.test(`${c.firstName} ${c.lastName}`))
+        res.json({ data: results })
+    } else res.json({ data: customerData })
 })
 
 //get customer by id
@@ -28,11 +33,17 @@ app.get('/transactions', (req, res, next) => {
     const { customer } = req.query;
     let transactions = [];
     if (customer) {
+        let runningTotal = 0;
+        let points;
         transactionData.forEach(t => {
             if (t.customerId === parseInt(customer)) {
+                points = getPoints(t.amount);
+                runningTotal += points;
+
                 transactions.push({
                     ...t,
-                    points: getPoints(t.amount)
+                    points,
+                    runningTotal
                 })
             }
         })
@@ -46,9 +57,9 @@ app.get('/transactions', (req, res, next) => {
 })
 
 //init server
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname,"client","build","index.html"))
-})
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname,"client","build","index.html"))
+// })
 app.listen(process.env.PORT || 5000, () => {
     console.log(`Listening on port ${process.env.PORT || 5000}`)
 })

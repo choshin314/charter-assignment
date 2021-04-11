@@ -1,0 +1,9 @@
+.customer-table {
+    height: 90vh;
+    overflow-y: auto;
+}
+
+.customer-table__title {
+    color: var(--spec-primary);
+    text-align: center;
+}

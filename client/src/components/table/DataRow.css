@@ -1,0 +1,11 @@
+.table-row {
+    cursor: pointer;
+}
+
+.table-row:hover {
+    background-color: var(--bg-med);
+}
+
+.table-row--shaded {
+    background-color: var(--bg-lite);
+}

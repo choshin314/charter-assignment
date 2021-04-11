@@ -1,0 +1,8 @@
+.modal-dialog {
+    margin: 3.5rem auto;
+}
+.modal-content {
+    min-height: 50vh;
+    max-height: 90vh;
+    overflow-y: auto;
+}
