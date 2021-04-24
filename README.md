@@ -1,7 +1,7 @@
 # Retail Customer Points & Transactions
 
 This is a coding project completed pursuant to the prompt below.  
-[You can check out the live demo on Heroku here](https://charter-project.herokuapp.com/)
+
 
 >
 > A retailer offers a rewards program to its customers, awarding points based on each recorded purchase.
